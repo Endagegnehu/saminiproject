@@ -36,7 +36,7 @@ public class BatchConfiguration {
                 name("personItemReader").
                 resource(new ClassPathResource("sample-data.csv")).
                 delimited().
-                names(new String[]{"first", "last","gpa","age"}).
+                names(new String[]{"first","last","gpa","age"}).
                 fieldSetMapper(new BeanWrapperFieldSetMapper<PersonDTO>(){{
                     setTargetType(PersonDTO.class);
                 }}).build();
@@ -50,7 +50,7 @@ public class BatchConfiguration {
     public JdbcBatchItemWriter<Person> writer(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<Person>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO person (first, last,gpa,age) VALUES (:first,:last,:gpa,:age)")
+                .sql("INSERT INTO person (first,last,gpa,age) VALUES (:first,:last,:gpa,:age)")
                 .dataSource(dataSource)
                 .build();
     }
