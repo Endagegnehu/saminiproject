@@ -40,12 +40,12 @@ public class UserController {
     private Job job;
 
 
-    @GetMapping("/admin")
-    public void admin(){
+    @GetMapping("/startBatch")
+    public void startBatch(){
         try {
             JobParameters jobParameters =
                     new JobParametersBuilder()
-                            .addString("jobId", String.format("period=", java.lang.System.currentTimeMillis()))
+                            .addString("jobId", String.format("period=%s", java.lang.System.currentTimeMillis()))
                             .toJobParameters();
             jobLauncher.run(job, jobParameters);
         } catch (Exception ex){
