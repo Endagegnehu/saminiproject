@@ -1,4 +1,4 @@
-package com.example.demosecurity.student;
+package com.example.demosecurity.user;
 
 import com.example.demosecurity.domain.User;
 import org.slf4j.Logger;

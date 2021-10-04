@@ -1,4 +1,4 @@
-package com.example.demosecurity.student;
+package com.example.demosecurity.user;
 
 import com.example.demosecurity.dto.UserRegistrationRequest;
 import com.example.demosecurity.dto.UserRegistrationResponse;
@@ -6,7 +6,11 @@ import com.example.demosecurity.service.MyUserDetailsService;
 import com.example.demosecurity.util.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,29 +20,33 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
-    final Logger logger = LoggerFactory.getLogger(UserController.class);
-    @Autowired
-    AuthenticationManager authManager;
+
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    MyUserDetailsService userDetailsService;
+    private AuthenticationManager authManager;
+
+    @Autowired
+    private MyUserDetailsService userDetailsService;
 
     @Autowired
     private JwtUtil jwtTokenUtil;
 
-    @GetMapping("/")
-    public String getStudent(){
-        return ("<h1>Hello World</h1>");
-    }
+    @Autowired
+    private JobLauncher jobLauncher;
 
-    @GetMapping("/user")
-    public String user(){
-        return ("<h1> User</h1>");
-    }
+    @Autowired
+    private Job job;
+
 
     @GetMapping("/admin")
-    public String admin(){
-        return ("<h1> Admin</h1>");
+    public void admin(){
+        try {
+            jobLauncher.run(job, new JobParameters());
+        } catch (Exception ex){
+            logger.error(ex.getMessage());
+        }
+
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)

@@ -2,7 +2,7 @@ package com.example.demosecurity.service;
 
 import com.example.demosecurity.domain.User;
 import com.example.demosecurity.domain.UserRepository;
-import com.example.demosecurity.student.MyUserDetails;
+import com.example.demosecurity.user.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

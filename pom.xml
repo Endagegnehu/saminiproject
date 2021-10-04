@@ -55,6 +55,15 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.batch</groupId>
+			<artifactId>javax.batch-api</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.batch</groupId>
+			<artifactId>spring-batch-test</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
