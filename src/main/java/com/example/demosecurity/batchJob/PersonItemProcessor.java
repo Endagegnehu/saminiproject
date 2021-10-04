@@ -13,7 +13,7 @@ public class PersonItemProcessor implements ItemProcessor<PersonDTO, Person> {
     @Override
     public Person process(final PersonDTO personDTO) throws Exception {
          String firstName = personDTO.getFirst();
-         String lastName = personDTO.getFirst();
+         String lastName = personDTO.getLast();
          int age = personDTO.getAge();
          double gpa = personDTO.getGpa();
 
